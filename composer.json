@@ -1,0 +1,14 @@
+{
+    "name": "mobin/from-scratch",
+    "authors": [{
+        "name": "mobinrai",
+        "email": "mobinraee@gmail.com"
+    }],
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/",
+            "core\\": "core/"
+        }
+    },
+    "require": {}
+}
