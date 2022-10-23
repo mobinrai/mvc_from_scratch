@@ -1,6 +1,7 @@
 <?php
 
 namespace core;
+
 use core\traits\ErrorsTraits;
 
 class DotEnv
@@ -54,8 +55,5 @@ class DotEnv
             }
         }
     }
-    public function getDsn(): string
-    {
-        return "mysql:host=".$_ENV['DB_HOST'].";port=".$_ENV['DB_PORT'].";dbname=".$_ENV['DB_NAME'];
-    }
+    
 }

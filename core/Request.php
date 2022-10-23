@@ -18,13 +18,17 @@ class Request{
     }
     public function setPath(): void
     {
-        $requestUri = $_SERVER['REQUEST_URI'];
-        if(strlen($requestUri)>1){
+        $requestUri = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL);
+        if(strlen($requestUri)>1)
+        {
             $path = $requestUri[strlen($requestUri)-1] === '/' ? substr_replace($requestUri, '', -1): $requestUri;
-        }else{
+        }
+        else
+        {
             $path = $requestUri;
-        } 
-        $this->path = htmlspecialchars($path);
+        }
+        
+        $this->path = $path;
     }
     public function getMethod(): string
     {

@@ -1,4 +1,5 @@
-<a href="components.html" class="btn btn-primary btn-component" data-spy="affix" data-offset-top="600"><i class="ti-shift-left-alt"></i> Components</a>
+<?php if('/'===filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL) || '/home'===filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL)){ ?>
+    <a href="components.html" class="btn btn-primary btn-component" data-spy="affix" data-offset-top="600"><i class="ti-shift-left-alt"></i> Components</a>
     <header class="header">
         <div class="container">
             <ul class="social-icons pt-3">
@@ -11,11 +12,12 @@
             <div class="header-content">
                 <h4 class="header-subtitle" >Hello, I am</h4>
                 <h1 class="header-title">Mobin Rai</h1>
-                <h6 class="header-mono" >Programmer</h6>
+                <h6 class="header-mono" >Web Developer | Programmer</h6>
                 <button class="btn btn-primary btn-rounded"><i class="ti-printer pr-2"></i>Print Resume</button>
             </div>
         </div>
     </header>
+<?php }?>
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white" data-spy="affix" data-offset-top="510">
     <div class="container">
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,31 +26,33 @@
         <div class="collapse mt-sm-20 navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="#home" class="nav-link">Home</a>
+                    <a href="/" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
+                    <a href="/about" class="nav-link">About</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#resume" class="nav-link">Resume</a>
+                    <a href="/resume" class="nav-link">Resume</a>
                 </li>
             </ul>
             <ul class="navbar-nav brand">
+            <?php if('/'===filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL) || '/home'===filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL)){ ?>
                 <img src="../views/assets/imgs/avatar.jpg" alt="" class="brand-img">
+            <?php }?>
                 <li class="brand-txt">
                     <h5 class="brand-title">John Doe</h5>
                     <div class="brand-subtitle">Web Designer | Developer</div>
                 </li>
-            </ul>
+            </ul>            
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="#portfolio" class="nav-link">Portfolio</a>
+                    <a href="/portfolio" class="nav-link">Portfolio</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#blog" class="nav-link">Blog</a>
+                    <a href="/blog" class="nav-link">Blog</a>
                 </li>
                 <li class="nav-item last-item">
-                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="/contact" class="nav-link">Contact</a>
                 </li>
             </ul>
         </div>

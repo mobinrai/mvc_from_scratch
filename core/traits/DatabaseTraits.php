@@ -14,18 +14,18 @@ trait DatabaseTraits
         $this->statement = $this->getDbConnection()->prepare($sql);
         return $this->statement;
     }
-
-    public function dbExecute(string $sql, $params=[])
+    /**
+     * If no variables are going to be used in the query,
+     * you can use the PDO::query() method
+     *
+     * @param [string] $sql
+     * @param [string] $option
+     * @return array
+     */
+    public function dbQuery(string $sql,string $option=''): array
     {
-        try{
-            $prepare = $this->dbPrepare($sql, $params);
-            return $prepare->execute();
-        }
-        catch(PDOException $exc)
-        {
-            echo $exc->getMessage();
-        }
-        
+        $result = $this->getDbConnection()->query($sql);
+        return $option !== '' ? $result->fetchAll($option) : $result->fetchAll();
     }
     public function dbExec(string $sql)
     {
@@ -36,12 +36,11 @@ trait DatabaseTraits
         catch(PDOException $exc)
         {
             echo $exc->getMessage();
-        }
-        
+        }        
     }
-    public function getDbConnection(){
-        $this->db= new Database();
-        return $this->db->getConnection();
+    public function getDbConnection(): object{
+        $this->db = new Database();
+        return $this->db->connection;
     }
 
 }

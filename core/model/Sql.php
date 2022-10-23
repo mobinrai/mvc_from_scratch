@@ -4,16 +4,15 @@ namespace core\model;
 
 use Stringable;
 
-class Sql implements Stringable
+class Sql
 {
-    private array $fields = [];
+    private array $columns = [];
     private array $from = [];
     private array $where = [];
 
     public function select(array $fields): Sql
     {
-        $this->fields = $fields;
-
+        $this->columns = $fields;
         return $this;
     }
 
@@ -35,7 +34,7 @@ class Sql implements Stringable
     {
         return sprintf(
             'SELECT %s FROM %s WHERE %s',
-            join(', ', $this->fields),
+            join(', ', $this->columns),
             join(', ', $this->from),
             join(' AND ', $this->where)
         );

@@ -77,8 +77,7 @@ class Migration
      */
     private function getAppliedMigrations()
     {
-        $this->dbExecute('SELECT migration from migrations');
-        return $this->statement->fetchAll(PDO::FETCH_COLUMN);
+        return $this->dbQuery('SELECT migration from migrations', PDO::FETCH_COLUMN);  
     }
     /**
      * insert's new migrations file names in the database
@@ -88,7 +87,8 @@ class Migration
     private function insertNewMigrations(array $newMigrations=[]): void
     {
         $strMigrations = implode(",", array_map(fn($m)=>"('$m')", $newMigrations));
-        $this->dbExecute("INSERT INTO migrations(migration) VALUES ($strMigrations)");
+        $statement = $this->dbPrepare("INSERT INTO migrations(migration) VALUES ($strMigrations)");
+        $statement->execute();
     }
     private function getAllMigrations(): array
     {

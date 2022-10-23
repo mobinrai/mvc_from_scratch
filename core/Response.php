@@ -10,7 +10,7 @@ class Response{
     {
         http_response_code($code);
     }
-    public function getResponseCode()
+    public function getResponseCode(): int
     {
        return http_response_code();
     }

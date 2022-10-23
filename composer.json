@@ -10,5 +10,8 @@
             "core\\": "core/"
         }
     },
-    "require": {}
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    }
 }
