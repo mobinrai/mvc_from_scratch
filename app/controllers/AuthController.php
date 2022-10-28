@@ -7,19 +7,23 @@ use core\Validation;
 use core\View;
 use app\models\User;
 
-class AuthController{
+class AuthController
+{
 
     public function login()
     {
         return View::render('Home/login');
     }
-    public function register(){
+    public function register(): string
+    {
         return View::render('Home/register', ['errors'=>[]]);
     }
-    public function checkCrediential(Request $request){
+    public function checkCrediential(Request $request)
+    {
 
     }
-    public function addCrediential(Request $request){
+    public function addCrediential(Request $request): string
+    {
         $validation = new Validation();                
         $rules=[
             'input_username' => 'required|string|length:5',

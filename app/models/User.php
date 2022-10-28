@@ -14,7 +14,8 @@ class User extends BaseModel
 
     public function save(): bool
     {
-        if(parent::save()){
+        if(parent::save())
+        {
 
         }
         return true;

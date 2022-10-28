@@ -5,16 +5,20 @@ namespace core;
 use core\traits\DatabaseTraits;
 use PDO;
 
-class Migration
+final class Migration
 {
     use DatabaseTraits;
-    private $connection;
+    public static $instance = null;
 
-    public function __construct()
+    private function __construct()
     {
-        $this->connection = $this->getDbConnection();
     }
-    public function runMigrations()
+
+    public static function init(): object
+    {
+        return self::$instance ?? new self;
+    }
+    public function runMigrations(): void
     {
         $this->createMigrationTable();
         $appliedMigrations = $this->getAppliedMigrations();
@@ -30,7 +34,8 @@ class Migration
                 continue;
             }
             $fullClassName = $migrationNamespace.$migration;
-            if(class_exists($fullClassName)){
+            if(class_exists($fullClassName))
+            {
                 $this->createTable($fullClassName, $migration);
                 $newMigrations[] = $migration;
             }
@@ -49,7 +54,7 @@ class Migration
      * @param string $migration--file name
      * @return void
      */
-    private function createTable(string $fullClassName, string $migration)
+    private function createTable(string $fullClassName, string $migration): void
     {
         $this->logMessage('Applying migrations..');
         $className = new $fullClassName;
@@ -63,7 +68,8 @@ class Migration
      * 
      * @return void
      */
-    private function createMigrationTable(){
+    private function createMigrationTable(): void
+    {
         $this->dbExec('CREATE TABLE `migrations` (
             `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
             `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -75,9 +81,9 @@ class Migration
      * Gets all applied migration from migrations table
      * @return 
      */
-    private function getAppliedMigrations()
+    private function getAppliedMigrations(): array
     {
-        return $this->dbQuery('SELECT migration from migrations', PDO::FETCH_COLUMN);  
+        return $this->dbQuery('SELECT migration FROM migrations', PDO::FETCH_COLUMN);  
     }
     /**
      * insert's new migrations file names in the database
@@ -93,12 +99,13 @@ class Migration
     private function getAllMigrations(): array
     {
         $files=[];
-        foreach(scandir(ROOTH_PATH.'/app/migrations') as $file){
+        foreach(scandir(ROOTH_PATH.'/app/migrations') as $file)
+        {
             $files [] = pathinfo($file, PATHINFO_FILENAME);
         }
         return $files;
     }
-    public function logMessage(string $message)
+    private function logMessage(string $message): void
     {
         echo '['.date('Y-m-d H:i:s'). ']'. $message.PHP_EOL;
     }

@@ -11,6 +11,7 @@ define('ROOTH_PATH', dirname(__DIR__));
 
 $app = new Application;
 
-$app->run();
+echo $app->run();
 
+die();
 ?>

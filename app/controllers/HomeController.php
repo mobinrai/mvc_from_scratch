@@ -6,45 +6,34 @@ use core\Request;
 use core\Validation;
 use core\View;
 
-class HomeController{
-    public function index()
+class HomeController
+{
+    public function index(): string
     {
-        $personal_data = [
-            'Email'=> 'mobinraee@gmail.com',
-            'Phone'=> '',
-            'Github' => 'https://github.com/mobinrai',
-            'Address'=> '',
-        ];
-        $social_links = [
-            'ti-twitter' => '',
-            'ti-google' => '',
-            'ti-github' => '',
-            'ti-instagram'=>'',
-            'ti-facebook' => ''
-        ];
-        $skills = [
-            'Html & Css'=>'75%',
-            'PHP' => "80%",
-            'Python' => '60%',
-            'Node.js' => '60%',
-            'MySql' => '70%',
-            'Js' => '70%'
-        ];
-        $params = ['personal_details'=> $personal_data,
-                    'social_links' => $social_links,
-                    'skills'=> $skills];
+        $params = ['personal_details'=> self::getPersonalData(),
+                    'social_links' => self::getSocialLinks(),
+                    'skills'=> self::getSkills()];
 
         return View::render('Home/home', $params);
     }
-    public function about()
+    public function about(): string
     {
-        return View::render('Home/about');
+        $params = ['personal_details'=> self::getPersonalData(),
+        'social_links' => self::getSocialLinks(),
+        'skills'=> self::getSkills()];
+        return View::render('Home/about', $params);
     }
-    public function contact()
+    public function contact(): string
     {
         return View::render('Home/contact');
     }
-    public function postContact(Request $request){
+
+    public function resume(): string
+    {
+        return View::render('Home/resume');
+    }
+    public function postContact(Request $request): string
+    {
         $data = $request->getData();
         var_dump($data);
         $validation = new Validation();
@@ -58,5 +47,35 @@ class HomeController{
         ];
         $validation->validate($rules);
         return View::render('Home/contact');
+    }
+    private static function getPersonalData(): array
+    {
+        return [
+            'Email'=> 'mobinraee@gmail.com',
+            'Phone'=> '',
+            'Github' => 'https://github.com/mobinrai',
+            'Address'=> '',
+        ];
+    }
+    private static function getSocialLinks(): array
+    {
+        return [
+            'ti-twitter' => '',
+            'ti-google' => '',
+            'ti-github' => '',
+            'ti-instagram'=>'',
+            'ti-facebook' => ''
+        ];
+    }    
+    private static function getSkills(): array
+    {
+        return [
+            'Html & Css'=>'75%',
+            'PHP' => "80%",
+            'Python' => '60%',
+            'Node.js' => '60%',
+            'MySql' => '70%',
+            'Js' => '70%'
+        ];
     }
 }

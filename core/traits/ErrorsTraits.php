@@ -11,29 +11,26 @@ trait ErrorsTraits
     private $errorMessage = ['class'=>[ErrorController::class, 'displayErrorMessage']];
     private $methodNotFound = ['class'=>[ErrorController::class, 'methodNotFound']];
     
-    public function pageNotFound(string $message='')
+    public function pageNotFound(string $message=''): callable
     {
         if($message!==''){
             $this->pageNotFound['param']['message']=$message;
         }
-        echo(Application::$app->response->_callback($this->errorMessage));
-        die();
+        return (Application::$app->response->_callback($this->errorMessage));
     }
     
-    public function errorMessage(string $message='')
+    public function errorMessage(string $message=''): callable
     {
         if($message!==''){
             $this->errorMessage['param']['message']=$message;
         }
-        echo(Application::$app->response->_callback($this->errorMessage));
-        die();
+        return (Application::$app->response->_callback($this->errorMessage));
     }
-    public function mathodNotFound(string $message='')
+    public function mathodNotFound(string $message=''): callable
     {
         if($message!==''){
             $this->pageNotFound['param']['message'] =$message;
         }
-        echo(Application::$app->response->_callback($this->errorMessage));
-        die();
+        return (Application::$app->response->_callback($this->errorMessage));
     }
 }

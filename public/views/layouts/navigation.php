@@ -1,4 +1,4 @@
-<?php if('/'===filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL) || '/home'===filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL)){ ?>
+<?php if('/'===getCurrentUrl()){ ?>
     <a href="components.html" class="btn btn-primary btn-component" data-spy="affix" data-offset-top="600"><i class="ti-shift-left-alt"></i> Components</a>
     <header class="header">
         <div class="container">
@@ -36,7 +36,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav brand">
-            <?php if('/'===filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL) || '/home'===filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL)){ ?>
+            <?php if('/'===getCurrentUrl()){ ?>
                 <img src="../views/assets/imgs/avatar.jpg" alt="" class="brand-img">
             <?php }?>
                 <li class="brand-txt">

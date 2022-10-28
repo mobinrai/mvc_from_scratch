@@ -3,12 +3,11 @@
 namespace app\migrations;
 
 use core\traits\DatabaseTraits;
-use PDOException;
 
 class m0001_initial
 {
     use DatabaseTraits;
-    public function up()
+    public function up(): void
     {           
         $sql = 'CREATE TABLE `users` (
                 `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -23,7 +22,7 @@ class m0001_initial
         $this->dbExec($sql);
         
     }
-    public function down()
+    public function down(): void
     {
         $sql = 'DROP Table users';
         $this->dbExec($sql);

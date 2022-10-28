@@ -1,10 +1,20 @@
-<section>
-<div class="container-fluid py-5 bg-custom-gray">
-    <div class="row">
-        <div class="col-lg-12 mb-5 text-center">
-            <h1 class="mb-5">About Me</h1>
+<section class="bg-light">
+        <div class="container py-4">
+            <div class="row align-items-center justify-content-between">
+                <div class="contact-header col-lg-4">
+                    <h1 class="h2 pb-3 text-primary">About Me</h1>
+                    <h3 class="h4 regular-400">Who am i?</h3>
+                    <p class="light-300">
+                        Vector illustration is from <a rel="nofollow" href="https://storyset.com/" target="_blank">StorySet</a>. Incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+                    </p>
+                </div>
+                <div class="contact-img col-lg-5 align-items-end col-md-4">
+                    <img src="../views/assets/img/banner-img-01.svg">
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+<section class="container py-5">
     <div id="about" class="row about-section">
         <div class="col-lg-4 about-card">
             <h3 class="font-weight-light">Who am I ?</h3>
@@ -50,11 +60,13 @@
                 <div class="col-1 text-danger pt-1"><i class="ti-paint-bucket icon-lg"></i></div>
                 <div class="col-10 ml-auto mr-3">
                     <h6>Web Development</h6>
-                    <p class="subtitle"></p>
+                    <p class="subtitle">
+                        
+                    </p>
                     <hr>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </section>
+        

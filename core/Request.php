@@ -46,13 +46,17 @@ class Request{
     private function clearData(): array
     {
         $result = [];
-        if($this->getMethod() === 'get') {
-            foreach($_GET as $key => $value){
+        if($this->getMethod() === 'get')
+        {
+            foreach($_GET as $key => $value)
+            {
                 $result[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
-        if($this->getMethod() === 'post') {
-            foreach($_POST as $key => $value){
+        if($this->getMethod() === 'post')
+        {
+            foreach($_POST as $key => $value)
+            {
                 $result[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }

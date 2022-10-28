@@ -1,14 +1,13 @@
 <?php
 
 namespace core;
+use core\traits\ErrorsTraits;
 
 class View
 {
-    public function __construct()
-    {
-        // self::$response = self::responseObj();
-    }
-    public static function render(string $view, array $params=[], string $layoutName='app')
+    use ErrorsTraits;
+    
+    public static function render(string $view, array $params=[], string $layoutName='app'): string
     {
         $viewFile = ROOTH_PATH.'/public/views/'.$view.'.php';
 
@@ -16,9 +15,9 @@ class View
         {
             return self::renderLayout($view, $params, $layoutName);
         }
-        else {
-            Application::$app->response->setResponseCode(404);
-            Application::$app->response->_callback(['class'=>[controllers\ErrorController::class, 'pageNotFound']]);
+        else
+        {
+            return Application::$app->response->_callback(['class'=>[ErrorController::class, 'pageNotFound']]);
         }
     }
     private static function renderLayout(string $view, array $params=[], string $layoutName='app'): string
@@ -32,7 +31,8 @@ class View
 
     private static function renderView(string $view, array $params=[]): string
     {
-        foreach($params as $key=>$value){
+        foreach($params as $key=>$value)
+        {
             $$key = $value;
         }
         ob_start();

@@ -3,7 +3,8 @@
 namespace core;
 
 class Logger{
-    public function writeLog(string $message){
+    public function writeLog(string $message)
+    {
         
     }
 }

@@ -1,6 +1,6 @@
 <section class="section" id="blog">
     <div class="container">
-        <h2 class="mb-5">Latest <span class="text-danger">News</span></h2>
+        <h2 class="mb-5">Latest <span class="text-danger">Blog</span></h2>
         <div class="row">
             <div class="blog-card">
                 <div class="img-holder">

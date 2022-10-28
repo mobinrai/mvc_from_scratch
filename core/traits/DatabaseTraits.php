@@ -3,6 +3,7 @@
 namespace core\traits;
 
 use core\Database;
+use PDO;
 use PDOException;
 
 trait DatabaseTraits
@@ -17,7 +18,6 @@ trait DatabaseTraits
     /**
      * If no variables are going to be used in the query,
      * you can use the PDO::query() method
-     *
      * @param [string] $sql
      * @param [string] $option
      * @return array
@@ -31,16 +31,17 @@ trait DatabaseTraits
     {
         try
         {
-            $this->getDbConnection()->exec($sql);
+            return $this->getDbConnection()->exec($sql);
         }
         catch(PDOException $exc)
         {
             echo $exc->getMessage();
         }        
     }
-    public function getDbConnection(): object{
-        $this->db = new Database();
-        return $this->db->connection;
+    public function getDbConnection(): PDO
+    {
+        $this->db = Database::init();
+        return $this->db->getConnection();
     }
 
 }

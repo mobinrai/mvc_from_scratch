@@ -1,5 +1,5 @@
 {
-    "name": "mobin/from-scratch",
+    "name": "mobin/mvc_from_scratch",
     "authors": [{
         "name": "mobinrai",
         "email": "mobinraee@gmail.com"
@@ -8,9 +8,14 @@
         "psr-4": {
             "app\\": "app/",
             "core\\": "core/"
-        }
+        },
+        "files": [
+            "core/helpers.php"
+        ]
     },
-    "require": {},
+    "require": {
+
+    },
     "require-dev": {
         "phpunit/phpunit": "^9"
     }

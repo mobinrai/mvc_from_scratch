@@ -20,10 +20,12 @@ class Router{
         $this->response = $response;
     }
 
-    public static function get($param, $callback){
+    public static function get($param, $callback): void
+    {
         self::$routes['get'][$param] = $callback;
     }
-    public static function post($param, $callback){
+    public static function post($param, $callback): void
+    {
         self::$routes['post'][$param] = $callback;
     }
     public function getCurrentRoute(): array
@@ -42,7 +44,8 @@ class Router{
             if(sizeof($paramList) > 0)
             {
                 $args = [];
-                foreach($paramList as $list){
+                foreach($paramList as $list)
+                {
                     if($list->name === 'request')
                     {
                         $args[$list->name] = $this->request;
@@ -54,14 +57,15 @@ class Router{
                 $callback['param'] = $args; 
                 return ($callback);
             }
-            else{
+            else
+            {
                 return ($callback);
             }
         }
         $this->methodNotFound['param']['message'] = $path; 
         return $this->methodNotFound;
     }
-    private function replacePath($method, $path):array
+    private function replacePath($method, $path): array
     {
         if(self::$routes[$method][$path] != null)
         {

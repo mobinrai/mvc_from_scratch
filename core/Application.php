@@ -17,12 +17,13 @@ class Application
         self::$app = $this;
     }
 
-    public function run(): void
+    public function run(): string
     {
         if($this->request->checkAllowedMethods())
         {
             $route = $this->router->getCurrentRoute();
-            echo ($this->response->_callback($route));
+            return $this->response->_callback($route);
+            
         }
         else
         {

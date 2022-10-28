@@ -13,7 +13,7 @@ class DotEnv
     {
         $this->setPath($path);
     }
-    public function setPath(string $path)
+    public function setPath(string $path): void
     {
         try{
             if(!is_file($path)){
@@ -25,7 +25,8 @@ class DotEnv
         }
         $this->path = $path;
     }
-    public function readFile(){
+    public function readFile(): void
+    {
         try{
             if(!is_readable($this->path)){
                 throw new \InvalidArgumentException(sprintf('%s file is not readable', $this->path), 404);

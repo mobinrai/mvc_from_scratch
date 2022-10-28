@@ -2,7 +2,6 @@
 
 namespace core\model;
 
-use Stringable;
 
 class Sql
 {
@@ -30,13 +29,13 @@ class Sql
         return $this;
     }
 
-    public function __toString(): string
-    {
-        return sprintf(
-            'SELECT %s FROM %s WHERE %s',
-            join(', ', $this->columns),
-            join(', ', $this->from),
-            join(' AND ', $this->where)
-        );
-    }
+    // public function __toString(): string
+    // {
+    //     return sprintf(
+    //         'SELECT %s FROM %s WHERE %s',
+    //         join(', ', $this->columns),
+    //         join(', ', $this->from),
+    //         join(' AND ', $this->where)
+    //     );
+    // }
 }

@@ -28,19 +28,24 @@ class Validation
             $data = Application::$app->request->getData()[$key];
             foreach($rules as $rule)
             {
-                if($rule === 'required' && empty($data)){
+                if($rule === 'required' && empty($data))
+                {
                     $errors[$key][$rule] = str_replace('{field}', $key, $this->errorMessages()[$rule]);
                 }
-                if($rule === 'email' && !preg_match(Validation::EMAIL_VALIDATION, $data) && !empty($data)){
+                if($rule === 'email' && !preg_match(Validation::EMAIL_VALIDATION, $data) && !empty($data))
+                {
                     $errors[$key][$rule] = str_replace('{field}', $key, $this->errorMessages()[$rule]);
                 }
-                if($rule === 'number' && !preg_match(Validation::NUMBERS, $data) && !empty($data)){
+                if($rule === 'number' && !preg_match(Validation::NUMBERS, $data) && !empty($data))
+                {
                     $errors[$key][$rule] = str_replace('{field}', $key, $this->errorMessages()[$rule]);
                 }
-                if($rule === 'alpha' && !preg_match(Validation::ALPHABETS, $data) && !empty($data)){
+                if($rule === 'alpha' && !preg_match(Validation::ALPHABETS, $data) && !empty($data))
+                {
                     $errors[$key][$rule] = str_replace('{field}', $key, $this->errorMessages()[$rule]);
                 }
-                if(strpos($rule, ':') && !empty($data)){
+                if(strpos($rule, ':') && !empty($data))
+                {
                     list($ruleName, $pattern) = explode(':', $rule);
                     if(in_array($ruleName, ['max', 'min', 'length', 'size']) && is_string($this->checkLength($key, $data, $pattern))){
                         $errors[$key][$rule] = $this->checkLength($key, $data, $pattern);
@@ -51,7 +56,7 @@ class Validation
         $this->errorMessages = $errors;
         return !empty($errors) ? $errors: true;        
     }
-    private function errorMessages():array
+    private function errorMessages(): array
     {
         return [
             'required'=> 'This {field} is required.',
@@ -61,18 +66,20 @@ class Validation
         ];
     }
 
-    public function getErrorMessage($key):string
+    public function getErrorMessage($key): string
     {
         return $this->errorMessages[$key];
     }
     private function checkLength(string $input_name, string $key, string $size)
     {
-        if(strlen($key)>$size || strlen($key)< $size){
+        if(strlen($key)>$size || strlen($key)< $size)
+        {
             return $this->replaceInputUnderline($input_name).' must be same as '.$size;
         }
         return true;
     }
-    private function replaceInputUnderline(string $input_name){
+    private function replaceInputUnderline(string $input_name): string
+    {
         return str_replace("_", ' ',$input_name);
     }
 }

@@ -10,6 +10,6 @@ define('ROOTH_PATH', dirname(__DIR__));
 
 use core\Migration;
 
-$migration = new Migration();
+$migration = Migration::init();
 
 $migration->runMigrations();

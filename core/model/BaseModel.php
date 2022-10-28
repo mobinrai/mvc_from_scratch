@@ -26,7 +26,7 @@ abstract class BaseModel
     }
     public function __get(string $name): string
     {
-        return isset($this->data[$name])? $this->data[$name] : false;
+        return isset($this->data[$name])? $this->data[$name] : '';
     }
     public function save(): bool
     {
@@ -48,15 +48,18 @@ abstract class BaseModel
         }
         return false;
     }
-    private function seperateFieldsWithComma(){
+    private function seperateFieldsWithComma(): string
+    {
         return implode(',', $this->fields);
     }
 
-    private function passwordHash($data){
+    private function passwordHash($data): string
+    {
         return password_hash($data, PASSWORD_DEFAULT);
     }
 
-    private function addCreatedAndUpdateAt(){
+    private function addCreatedAndUpdateAt(): void
+    {
         array_push($this->fields, 'created_at');
         array_push($this->fields, 'updated_at');
         $this->created_at = date('Y-m-d H:i:s');
