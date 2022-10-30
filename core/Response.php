@@ -12,16 +12,8 @@ class Response{
     {
        return http_response_code();
     }
-    public function _callback($callback)
-    {
-        $className = $callback['class'][0];
-        $methodNmae =$callback['class'][1];
-        if(key_exists('param', $callback) && sizeof($callback['param'])>0) {
-            return call_user_func_array([$className, $methodNmae], $callback['param']);
-        }
-        else {
-            return call_user_func([$className, $methodNmae]);
-        }
+    public function redirect(string $redirect){
+        header("Location: $redirect ");
     }
     // private static function responseObj(): object
     // {

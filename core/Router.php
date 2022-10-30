@@ -2,6 +2,7 @@
 
 namespace core;
 
+use core\exceptions\PageNotFoundException;
 use core\traits\ErrorsTraits;
 use ReflectionClass;
 use ReflectionMethod;
@@ -28,42 +29,34 @@ class Router{
     {
         self::$routes['post'][$param] = $callback;
     }
-    public function getCurrentRoute(): array
+    public function getCurrentRoute(): string
     {
         $method = $this->request->getMethod();
         $path = $this->request->getPath();
-        $callback = $this->replacePath($method, $path);        
-        $reflactionClass = new $callback['class'][0]();
-        $reflextionMethod =  $callback['class'][1];       
+        $callback = $this->replacePath($method, $path);
+        if(!key_exists('message', $callback)){
+            $controllerName = new $callback['class'][0]();
+            $methodName =  $callback['class'][1];
 
-        if((new ReflectionClass($reflactionClass))->hasMethod($reflextionMethod) 
-            && (new ReflectionMethod($reflactionClass, $reflextionMethod))->isPublic())
-        {
-            $method = new ReflectionMethod($reflactionClass, $reflextionMethod);
-            $paramList = $method->getParameters();
-            if(sizeof($paramList) > 0)
+            if((new ReflectionClass($controllerName))->hasMethod($methodName) 
+                && (new ReflectionMethod($controllerName, $methodName))->isPublic())
             {
-                $args = [];
-                foreach($paramList as $list)
+                Application::$app->controllerAction = $methodName;
+                foreach($controllerName->getMiddlewares() as $middleware)
                 {
-                    if($list->name === 'request')
-                    {
-                        $args[$list->name] = $this->request;
-                    }
-                    else if(key_exists($list->name, $callback['param'])){
-                        $args[$list->name] = $callback['param'][$list->name];
-                    }
+                    $middleware->execute();
                 }
-                $callback['param'] = $args; 
-                return ($callback);
-            }
-            else
-            {
-                return ($callback);
+                if(key_exists('param', $callback) && sizeof($callback['param']) > 0)
+                {
+                    return call_user_func([$controllerName,$methodName], $this->request, implode(',',$callback['param']));
+                }
+                else
+                {
+                    return call_user_func([$controllerName,$methodName], $this->request);
+                }
             }
         }
-        $this->methodNotFound['param']['message'] = $path; 
-        return $this->methodNotFound;
+        throw new PageNotFoundException;
     }
     private function replacePath($method, $path): array
     {
@@ -90,8 +83,7 @@ class Router{
                 }
             }            
         }
-        $this->methodNotFound['param']['message'] = $path; 
-        return $this->methodNotFound;
+        return ['message' => 'page not found'];
     }
     private function explodeRoute($param): string
     {

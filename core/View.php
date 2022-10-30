@@ -7,7 +7,7 @@ class View
 {
     use ErrorsTraits;
     
-    public static function render(string $view, array $params=[], string $layoutName='app'): string
+    public function render(string $view, array $params=[], string $layoutName='app'): string
     {
         $viewFile = ROOTH_PATH.'/public/views/'.$view.'.php';
 
@@ -17,10 +17,10 @@ class View
         }
         else
         {
-            return Application::$app->response->_callback(['class'=>[ErrorController::class, 'pageNotFound']]);
+            return $this->pageNotFound('View file not found');
         }
     }
-    private static function renderLayout(string $view, array $params=[], string $layoutName='app'): string
+    private function renderLayout(string $view, array $params=[], string $layoutName='app'): string
     {
         $viewContent = self::renderView($view, $params);
         ob_start();
@@ -29,7 +29,7 @@ class View
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
-    private static function renderView(string $view, array $params=[]): string
+    private function renderView(string $view, array $params=[]): string
     {
         foreach($params as $key=>$value)
         {

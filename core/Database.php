@@ -2,19 +2,17 @@
 
 namespace core;
 
+use core\exceptions\DatabaseException;
 use PDO;
-use core\traits\ErrorsTraits;
-use PDOException;
 /**
  * SingleTon class for database connection
  */
 final class Database
 {
-    use ErrorsTraits;
     public static $instance = null;
     private PDO $connection;
 
-    private function __clone(): void
+    private function __clone()
     {}
     private function __wakeup()
     {}
@@ -25,11 +23,11 @@ final class Database
             $dotEnv->readFile();
             $this->connection = new PDO($this->getDsn(), $_ENV['DB_USER'], $_ENV['DB_PASS'], [PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);
         }
-        catch(PDOException $pEx) {
-            $this->errorMessage("Could not establish connection with database.");
+        catch(\Exception $pEx) {
+            throw new DatabaseException();
         }
     }
-    public static function init(): static
+    public static function init(): object
     {
         return self::$instance ?? new self;
     }

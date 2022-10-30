@@ -1,68 +1,73 @@
-<section class="bg-light">
-    <div class="container py-4">
-        <div class="row align-items-center justify-content-between">
-            <div class="contact-header col-lg-4">
-                <h1 class="h2 pb-3 text-primary">Create an account</h1>
-                <h3 class="h4 regular-400">If you have already an account, <a href="/login">login</a></h3>
-            </div>
-            <div class="contact-img col-lg-5 align-items-end col-md-4">
-                <img src="../views/assets/img/banner-img-01.svg">
+<div id="heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading-content">
+                    <h2>Register</h2>
+                    <span>Home / <a href="/register">Register</a></span>
+                </div>
             </div>
         </div>
     </div>
-</section>
-<!-- Start Contact -->
-<section class="container py-5">
-    <!-- Start Contact Form -->
-    <div class="col-lg-8 ">
-    <?php if(sizeof($errors)>0){?>
-        <div class="bg-light mb-4 py-2 px-4">
-            <?php foreach($errors as $key=>$error)
-            {
-                if(is_array($error)){
-                    foreach($error as $message){
-                        echo '<span class="text-danger">'.$message.'</span><br>';
-                    }
-                }else{
-                    echo '<span class="text-danger">'.$error.'</span><br>';
-                }
-            } ?>
+</div>
+<div id="product-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading-section">
+                    <h2>Create a new account</h2>
+                    <img src="../views/assets/images/under-heading.png" alt="">
+                </div>
+            </div>
         </div>
-        <?php }?>
-    <h6 class="regular-400">Please enter every <span class="text-danger">*</span> field</h6>
-        <form class="contact-form row" method="post" action="/register" role="form">
-        <div class="col-lg-12 mb-4">
-                <div class="form-floating">
-                    <input type="text" class="form-control form-control-lg light-300" value="" id="floatingusername" name="input_username" placeholder="Email">
-                    <label for="floatingusername light-300">User Name
-                        <span class="text-danger">*</span>
-                    </label>
+        <div id="contact-us">
+            <div class="container">
+                <div class="row">
+                    <div class="product-item col-md-12">
+                        <div class="row">
+                            <div class="col-md-8">  
+                                <div class="message-form">
+                                    <form action="/register" method="post" class="send-message">
+                                        <div class="row">
+                                        <div class="email col-md-12 mb-4">
+                                                <label for="user_name">User name</label>
+                                                <input type="text" name="user_name" id="user_name" value="<?=old_value('user_name')?>" placeholder="User Name" required/>
+                                                <span class="form_field_error text-danger"><?php echo getErrorMessage('user_name')?></span>
+                                            </div>
+                                            <div class="email col-md-12 mb-4">
+                                                <label for="email">Email</label>
+                                                <input type="text" name="email" id="email" value="<?=old_value('email')?>" placeholder="Email" required/>
+                                                <span class="form_field_error text-danger"><?php echo getErrorMessage('email')?></span><br>
+                                            </div>
+                                            <div class="password col-md-6">
+                                                <label for="password">Password</label>
+                                                <input type="password" name="password" id="password" value="<?=old_value('password')?>" placeholder="Password" required/>
+                                                <span class="form_field_error text-danger"><?php echo getErrorMessage('password')?></span>
+                                                <span class="text-small text-info">Must be at least 6 characters long</span><br>
+                                            </div>
+                                            <div class="confirm_password col-md-6">
+                                                <label for="confirm_password">Confirm Password</label>
+                                                <input type="password" name="confirm_password" id="confirm_password" value="<?=old_value('confirm_password')?>" placeholder="Confirm Password" required/>
+                                                <span class="form_field_error text-danger"><?php echo getErrorMessage('confirm_password')?></span>
+                                                <br>
+                                                <span class="text-small text-info">Must be same as password</span>
+                                            </div>
+                                        </div>
+                                        <div class="send mt-1">                                            
+                                            <button type="submit" class="mt-1">Register</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-1">
+                                <div class="info" style="margin-top: 24px">
+                                    <p>If you already have an account. Please <a href="/login">login</a></p>
+                                </div>
+                            </div>     
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-12 mb-4">
-                <div class="form-floating">
-                    <input type="text" class="form-control form-control-lg light-300" id="floatingemail" name="input_email" placeholder="Email">
-                    <label for="floatingemail light-300">Email<span class="text-danger">*</span></label>
-                </div>
-            </div>
-            <!-- End Input Email -->
-            <div class="col-lg-12 mb-4">
-                <div class="form-floating">
-                <input type="password" class="form-control form-control-lg light-300" id="floatingpassword" name="input_password" placeholder="Password">
-                    <label for="floatingpassword light-300">Password<span class="text-danger">*</span></label>
-                </div>
-            </div>            
-            <!-- End Input password -->
-            <div class="col-lg-12 mb-4">
-                <div class="form-floating">
-                <input type="password" class="form-control form-control-lg light-300" id="floatingconfirmpassword" name="input_confirm_password" placeholder="Confirm_Password">
-                    <label for="floatingconfirmpassword light-300">Confirm Password<span class="text-danger">*</span></label>
-                </div>
-            </div>
-            <div class="col-md-12 col-12 m-auto text-end">
-                <button type="submit" class="btn btn-secondary rounded-pill px-md-5 px-4 py-2 radius-0 text-light light-300">Register</button>
-            </div>
-        </form>
+        </div>
     </div>
-    <!-- End Contact Form -->
-</section>
+</div>

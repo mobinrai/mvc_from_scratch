@@ -6,10 +6,12 @@ class Request{
     private string $action;
     private string $path;
     private array $data = [];
-    private array $allowedMethods=['get', 'post', 'delete'];
+    public static array $formData = [];
+    private array $allowedMethods = ['get', 'post', 'delete'];
     public function __construct()
     {
         $this->setMethod();
+        $this->setData();
         $this->setPath();
     }
     public function setMethod(): void
@@ -40,8 +42,13 @@ class Request{
     }
     public function getData(): array
     {
-        $this->data = $this->clearData();
         return $this->data;
+    }
+
+    public function setData(): void
+    {
+        $this->data = $this->clearData();
+        self::$formData = $this->data;
     }
     private function clearData(): array
     {

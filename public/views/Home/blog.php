@@ -1,6 +1,6 @@
 <section class="section" id="blog">
     <div class="container">
-        <h2 class="mb-5">Latest <span class="text-danger">Blog</span></h2>
+        <h2 class="mb-5">Latest<span class="text-danger"> Blog</span></h2>
         <div class="row">
             <div class="blog-card">
                 <div class="img-holder">
@@ -10,11 +10,10 @@
                     <h6 class="title">Consectetur adipisicing elit</h6>
 
                     <p class="post-details">
-                        <a href="#">By: Admin</a>
-                        <a href="#"><i class="ti-heart text-danger"></i> 234</a>
-                        <a href="#"><i class="ti-comment"></i> 123</a>
-                    </p>
-                    
+                        By:
+                        <i class="ti-heart text-danger"></i> 234
+                        <i class="ti-comment"></i> 123
+                    </p>                    
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet nesciunt qui sit velit delectus voluptates, repellat ipsum culpa id deleniti. Rerum debitis facilis accusantium neque numquam mollitia modi quasi distinctio.</p>
 
                     <p><b>Necessitatibus nihil impedit! Ex nisi eveniet, dolor aliquid consequuntur repudiandae.</b></p>

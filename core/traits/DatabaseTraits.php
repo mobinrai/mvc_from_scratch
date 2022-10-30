@@ -3,14 +3,16 @@
 namespace core\traits;
 
 use core\Database;
+use core\exceptions\DatabaseException;
 use PDO;
 use PDOException;
+use PDOStatement;
 
 trait DatabaseTraits
 {
     private $statement;
     private Database $db;
-    public function dbPrepare(string $sql, $params = [])
+    public function dbPrepare(string $sql): PDOStatement
     {
         $this->statement = $this->getDbConnection()->prepare($sql);
         return $this->statement;
@@ -22,10 +24,17 @@ trait DatabaseTraits
      * @param [string] $option
      * @return array
      */
-    public function dbQuery(string $sql,string $option=''): array
+    public function dbQuery(string $sql, string $option=''): array
     {
         $result = $this->getDbConnection()->query($sql);
         return $option !== '' ? $result->fetchAll($option) : $result->fetchAll();
+    }
+
+    public function dbExecute(string $sql, array $params=[]): PDOStatement
+    {
+        $statement = $this->dbPrepare($sql);
+        $statement->execute($params);
+        return $statement;
     }
     public function dbExec(string $sql)
     {

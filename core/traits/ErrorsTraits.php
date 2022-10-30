@@ -2,35 +2,26 @@
 
 namespace core\traits;
 
-use core\Application;
 use core\controllers\ErrorController;
 
 trait ErrorsTraits
 {
-    private $pageNotFound = ['class'=>[ErrorController::class, 'pageNotFound']];
-    private $errorMessage = ['class'=>[ErrorController::class, 'displayErrorMessage']];
-    private $methodNotFound = ['class'=>[ErrorController::class, 'methodNotFound']];
-    
-    public function pageNotFound(string $message=''): callable
+    private string $message='';
+
+    private function errorController(){
+        return new ErrorController;
+    }
+    public function pageNotFound(string $message=''): string
     {
-        if($message!==''){
-            $this->pageNotFound['param']['message']=$message;
-        }
-        return (Application::$app->response->_callback($this->errorMessage));
+        return ($this->errorController()->pageNotFound($message));
     }
     
-    public function errorMessage(string $message=''): callable
+    public function errorMessage(string $message=''): string
     {
-        if($message!==''){
-            $this->errorMessage['param']['message']=$message;
-        }
-        return (Application::$app->response->_callback($this->errorMessage));
+        return ($this->errorController()->displayErrorMessage($message));
     }
-    public function mathodNotFound(string $message=''): callable
+    public function mathodNotFound(string $message=''): string
     {
-        if($message!==''){
-            $this->pageNotFound['param']['message'] =$message;
-        }
-        return (Application::$app->response->_callback($this->errorMessage));
+        return ($this->errorController()->methodNotFound($message));
     }
 }

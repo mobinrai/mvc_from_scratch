@@ -2,40 +2,37 @@
 
 namespace app\controllers;
 
+use app\models\User;
+use core\controllers\Controller;
 use core\Request;
 use core\Validation;
 use core\View;
 
-class HomeController
+class HomeController extends Controller
 {
     public function index(): string
-    {
-        $params = ['personal_details'=> self::getPersonalData(),
-                    'social_links' => self::getSocialLinks(),
-                    'skills'=> self::getSkills()];
-
-        return View::render('Home/home', $params);
+    {       
+        return $this->render('Home/home');
     }
     public function about(): string
     {
-        $params = ['personal_details'=> self::getPersonalData(),
-        'social_links' => self::getSocialLinks(),
-        'skills'=> self::getSkills()];
-        return View::render('Home/about', $params);
+        return $this->render('Home/about');
     }
     public function contact(): string
     {
-        return View::render('Home/contact');
+        return $this->render('Home/contact');
     }
-
+    public function blog(): string
+    {
+        return $this->render('Home/blog');
+    }
     public function resume(): string
     {
-        return View::render('Home/resume');
+        return $this->render('Home/resume');
     }
     public function postContact(Request $request): string
     {
         $data = $request->getData();
-        var_dump($data);
         $validation = new Validation();
         $rules = [
             'input_name' =>'/^[a-z A-Z]+$/',
@@ -46,36 +43,6 @@ class HomeController
             'input_message' => Validation::TEXT
         ];
         $validation->validate($rules);
-        return View::render('Home/contact');
-    }
-    private static function getPersonalData(): array
-    {
-        return [
-            'Email'=> 'mobinraee@gmail.com',
-            'Phone'=> '',
-            'Github' => 'https://github.com/mobinrai',
-            'Address'=> '',
-        ];
-    }
-    private static function getSocialLinks(): array
-    {
-        return [
-            'ti-twitter' => '',
-            'ti-google' => '',
-            'ti-github' => '',
-            'ti-instagram'=>'',
-            'ti-facebook' => ''
-        ];
-    }    
-    private static function getSkills(): array
-    {
-        return [
-            'Html & Css'=>'75%',
-            'PHP' => "80%",
-            'Python' => '60%',
-            'Node.js' => '60%',
-            'MySql' => '70%',
-            'Js' => '70%'
-        ];
+        return $this->render('Home/contact');
     }
 }

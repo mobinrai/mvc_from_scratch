@@ -1,36 +1,73 @@
-<section class="bg-light">
-    <div class="container py-4">
-        <div class="row align-items-center justify-content-between">
-            <div class="contact-header col-lg-4">
-                <h1 class="h2 pb-3 text-primary">Contact</h1>
-                <h3 class="h4 regular-400">Elit, sed do eiusmod tempor</h3>
-                <p class="light-300">
-                    Vector illustration is from <a rel="nofollow" href="https://storyset.com/" target="_blank">StorySet</a>. Incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
-                </p>
-            </div>
-            <div class="contact-img col-lg-5 align-items-end col-md-4">
-                <img src="./assets/img/banner-img-01.svg">
+<div id="heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading-content">
+                    <h2>Contact Us</h2>
+                    <span>Home / <a href="/contact">Contact Us</a></span>
+                </div>
             </div>
         </div>
     </div>
-</section>
-<section class="container py-5">
-    <div class="row">
-        <div class="col-lg-12">
-        <form action="">
-            <div class="form-group">
-                <input class="form-control" type="text" placeholder="Name *" required="">
+</div>
+<div id="product-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading-section">
+                    <h2>Feel free to send a message</h2>
+                    <img src="../views/assets/images/under-heading.png" alt="" >
+                </div>
             </div>
-            <div class="form-group">
-                <input class="form-control" type="email" placeholder="Email *" required="">
+        </div>
+        <div id="contact-us">
+            <div class="container">
+                <div class="row">
+                    <div class="product-item col-md-12">
+                        <div class="row">
+                            <div class="col-md-8">  
+                                <div class="message-form">
+                                    <form action="#" method="post" class="send-message">
+                                        <div class="row">
+                                        <div class="name col-md-12 mb-4">
+                                            <label for="name">Full Name</label>
+                                            <input type="text" name="name" id="name" placeholder="Full Name" required/>
+                                        </div>
+                                        <div class="email col-md-6 mb-4">
+                                            <label for="email">Email</label>
+                                            <input type="text" name="email" id="email" placeholder="Email" required/>
+                                        </div>
+                                        <div class="subject col-md-6">
+                                            <label for="subject">Subject</label>
+                                            <input type="text" name="subject" id="subject" placeholder="Subject" />
+                                        </div>
+                                        </div>
+                                        <div class="row">        
+                                            <div class="text col-md-12">
+                                                <label for="message">Message</label>
+                                                <textarea name="text" placeholder="Message" class="mt-0"></textarea>
+                                            </div>   
+                                        </div>                              
+                                        <div class="send">
+                                            <button type="submit">Send</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-4">
+                                <div class="info">
+                                    <p>Duis at pharetra neque, ut condimentum, purus nisl pretium quam, in pulvinar velit massa id elit. </p>
+                                    <ul>
+                                        <li><i class="fa fa-phone"></i>090-080-0760</li>
+                                        <li><i class="fa fa-globe"></i>Trubner Strasse 6,69121 Heidelberg, Germany</li>
+                                        <li><i class="fa fa-envelope"></i><a href="#">info@company.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>     
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <textarea class="form-control" id=" placeholder=" message="" *"="" rows="7" required=""></textarea>
-            </div>
-            <div class="form-group ">
-                <button type="submit" class="form-control btn btn-primary">Send Message</button>
-            </div>
-        </form>
         </div>
     </div>
-</section>
+</div>
