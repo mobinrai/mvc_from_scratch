@@ -1,7 +1,7 @@
 ### PHP MVC Framework from Scratch... 
 #
 #### Is a project from scratch to give idea about how the mvc frameworks is developed
-##### This project is just for learning purpose only not for production and development. Learn and share your ideas.
+##### This project is just for learning purpose.It is not tested. Learn and share your ideas. 
 
 #### To run project :
 ##### you have to install or have already installed composer on your machine
