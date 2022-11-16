@@ -93,7 +93,7 @@ final class Migration
     private function insertNewMigrations(array $newMigrations=[]): void
     {
         $strMigrations = implode(",", array_map(fn($m)=>"('$m')", $newMigrations));
-        $statement = $this->dbPrepare("INSERT INTO migrations(migration) VALUES ($strMigrations)");
+        $statement = $this->dbPrepare("INSERT INTO migrations(migration) VALUES $strMigrations");
         $statement->execute();
     }
     private function getAllMigrations(): array

@@ -4,6 +4,10 @@ namespace core\exceptions;
 
 
 class DatabaseException extends \Exception{
-    protected $message = 'Could not connect with database';
     protected $code = 500;
+
+    public function __construct($message='Could not connect with database')
+    {
+        parent::__construct($message);
+    }
 }

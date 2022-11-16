@@ -1,12 +1,10 @@
 <?php
 
 namespace core;
-use core\traits\ErrorsTraits;
+use core\exceptions\PageNotFoundException;
 
 class View
-{
-    use ErrorsTraits;
-    
+{    
     public function render(string $view, array $params=[], string $layoutName='app'): string
     {
         $viewFile = ROOTH_PATH.'/public/views/'.$view.'.php';
@@ -17,7 +15,7 @@ class View
         }
         else
         {
-            return $this->pageNotFound('View file not found');
+            throw new PageNotFoundException();
         }
     }
     private function renderLayout(string $view, array $params=[], string $layoutName='app'): string

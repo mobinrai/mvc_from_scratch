@@ -27,9 +27,11 @@ class Application
     {
         if($this->request->checkAllowedMethods())
         {
-            try{
+            try
+            {
                 echo $this->router->getCurrentRoute();
-            }catch(\Exception $ex)
+            }
+            catch(\Exception $ex)
             {
                 $view = new View;
                 echo $view->render('errors/error_message', ['message'=>$ex->getMessage()], 'error_app');

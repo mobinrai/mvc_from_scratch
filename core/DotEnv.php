@@ -1,12 +1,10 @@
 <?php
 
 namespace core;
-
-use core\traits\ErrorsTraits;
+use core\exceptions\PageNotFoundException;
 
 class DotEnv
 {
-    use ErrorsTraits;
     protected string $path = '';
     protected Response $response;
     public function __construct(string $path)
@@ -21,7 +19,7 @@ class DotEnv
             }
         }catch(\Exception $e){
             echo $e->getMessage();
-            $this->pageNotFound('.env file is not a file');
+            throw new PageNotFoundException(".env file not found");
         }
         $this->path = $path;
     }
@@ -52,7 +50,7 @@ class DotEnv
         }catch(\Exception $e){
             if($e->getCode()== 404){
                 echo $e->getMessage();
-                $this->pageNotFound('.Env file is not readable');
+                throw new PageNotFoundException(".env file is not readable");
             }
         }
     }

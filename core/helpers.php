@@ -1,10 +1,13 @@
 <?php
 
 use app\models\Category;
+use core\exceptions\DatabaseException;
+use core\exceptions\PageNotFoundException;
 use core\model\BaseModel;
 use core\Request;
 use core\SessionManager;
 use core\Validation;
+use core\View;
 
 if(!function_exists('getCurrentUrl')){
     function getCurrentUrl(): string
@@ -50,12 +53,19 @@ if(!function_exists('isLogin')){
 if(!function_exists('getCategories')){
     function getCategories(): array
     {
-        $categories = [];
-        $category = new Category;
-        $query = Category::select('title', 'slug')->from($category->tableName())
-                ->where('parent_id = :parent_id');
-        $result = $category->dbExecute($query, ['parent_id' => 0]);
-        $categories = $result->fetchAll(PDO::FETCH_ASSOC);
+        
+        try{
+            $categories = [];
+            $category = new Category;
+            $query = Category::select('title', 'slug')->from($category->tableName())
+                    ->where('parent_id = :parent_id');
+            $result = $category->dbExecute($query, ['parent_id' => 0]);
+            $categories = $result->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(\Exception $ex)
+        {
+            throw new DatabaseException("Could not connect with database");
+        }
         return $categories;
     }
 }

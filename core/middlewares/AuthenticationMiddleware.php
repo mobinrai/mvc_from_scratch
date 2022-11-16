@@ -19,7 +19,7 @@ class AuthenticationMiddleware extends BaseMiddleware
     {
         if (Application::$app->isGuest()) {
             if (empty($this->actions) || in_array(Application::$app->controllerAction, $this->actions)) {
-                throw new ForbiddenException;
+                throw new ForbiddenException();
             }
         }
     }

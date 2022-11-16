@@ -3,12 +3,10 @@
 namespace core;
 
 use core\exceptions\PageNotFoundException;
-use core\traits\ErrorsTraits;
 use ReflectionClass;
 use ReflectionMethod;
 
 class Router{
-    use ErrorsTraits;
     protected static array $routes=[];
     protected Request $request;
 
