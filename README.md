@@ -5,8 +5,8 @@
 
 #### To run project :
 ##### you have to install or have already installed composer on your machine
-##### change copy .env.example to .env
-####  change database name,user and passowrd
+##### copy and change .env.example to .env
+####  change database name,user and passowrd according to your requirement
 
 ####  To run migrations go to public folder of the project
 ##### php migration.php
