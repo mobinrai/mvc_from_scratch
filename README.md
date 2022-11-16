@@ -5,6 +5,7 @@
 
 #### To run project :
 ##### you have to install or have already installed composer on your machine
+##### run composer update command to install dependencies for the project
 ##### copy and change .env.example to .env
 ####  change database name,user and passowrd according to your requirement
 
