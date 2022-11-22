@@ -1,5 +1,12 @@
 ### PHP MVC Framework from Scratch... 
-#
+
+##### This project has:
+
+##### User Registration
+##### Email verification
+##### Reseng email verification code
+##### User Login
+
 #### Is a project from scratch to give idea about how the mvc frameworks is developed
 ##### This project is just for learning purpose.It is not tested. Learn and share your ideas. 
 
