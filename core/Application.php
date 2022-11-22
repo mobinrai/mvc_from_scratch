@@ -20,6 +20,8 @@ class Application
         $this->response = new Response;
         $this->router = new Router($this->request, $this->response);
         $this->sessionManager = new SessionManager;
+        $dotEnv = new DotEnv(ROOTH_PATH.'/.env');
+        $dotEnv->readFile();
         self::$app = $this;
     }
 

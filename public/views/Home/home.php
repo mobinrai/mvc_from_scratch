@@ -1,4 +1,3 @@
-
 <div id="latest-blog">
     <div class="container">
         <div class="row">

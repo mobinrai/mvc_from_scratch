@@ -3,13 +3,11 @@
 namespace app\controllers;
 
 use core\controllers\Controller;
-use core\middlewares\AuthenticationMiddleware;
 use core\Request;
 use core\Validation;
-use core\View;
 use app\models\User;
 use core\Application;
-use core\Response;
+use core\auth\EmailVerification;
 
 class AuthController extends Controller
 {
@@ -44,7 +42,7 @@ class AuthController extends Controller
         $user->password = $request->getData()['password'];
         if($errors && $user->login())
         {
-            Application::$app->response->redirect('/');
+            Application::$app->response->redirect('users/dashboard');
         }
         else
         {
@@ -67,17 +65,22 @@ class AuthController extends Controller
             $user->user_name = $request->getData()['user_name'];
             $user->email = strtolower($request->getData()['email']);
             $user->password = $request->getData()['password'];
+            
             if($user->save())
             {
-                return $this->render('Home/home');
+                Application::$app->sessionManager->setSession('registerEmail', $user->email);
+
+                $sendMail = EmailVerification::sendEmailVerification($user,  'email/email_verification');
+                if($sendMail)
+                {
+                    Application::$app->response->redirect('email/email_verification');
+                }
             }
             else
             {
                 return $this->render('Home/register');
             }            
         }
-        else{
-            return $this->render('Home/register');
-        }        
+        return $this->render('Home/register');        
     }
 }

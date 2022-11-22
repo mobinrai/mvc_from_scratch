@@ -13,8 +13,8 @@ class CategoryController extends Controller
     {   
         $category = new Category;
         $query = Category::select('*')
-        ->from($category->tableName())
-        ->where('slug = :slug');
+                ->from($category->tableName())
+                ->where('slug = :slug');
         $result = $category->dbExecute($query, ['slug' => $slug]);
         $categories = $result->fetchAll(\PDO::FETCH_ASSOC);
         if(empty($categories)){

@@ -13,7 +13,7 @@ class Response{
        return http_response_code();
     }
     public function redirect(string $redirect){
-        header("Location: $redirect ");
+        header("Location: $redirect ", 200);
     }
     // private static function responseObj(): object
     // {

@@ -11,26 +11,26 @@ class Update implements IQueryString
     private string $table;
     public function __construct(string $table)
     {
-        $this->table = $table;        
+        $this->table = $table;
     }
     public function where(string ...$where): self
     {
         foreach ($where as $column) {
-            $this->conditions[] = ":$column";
+            $this->conditions[] = $column;
         }
         return $this;
     }
     public function set(string ...$values): self
     {
         foreach ($values as $value) {
-            $this->values[] = "$value = :$value";
+            $this->values[] = "$value";
         }
         return $this;
     }
     public function __toString(): string
     {
         $conditions = ($this->conditions === [] ? '' : ' WHERE ' . implode(' AND ', $this->conditions));
-        return 'UPDDATE ' .$this->table
+        return 'UPDATE ' .$this->table
                 .' SET ' . implode(', ', $this->values)
                 . $conditions;
     }

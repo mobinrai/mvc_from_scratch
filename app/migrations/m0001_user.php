@@ -4,7 +4,7 @@ namespace app\migrations;
 
 use core\traits\DatabaseTraits;
 
-class m0001_initial
+class m0001_user
 {
     use DatabaseTraits;
     public function up(): void
@@ -16,6 +16,7 @@ class m0001_initial
                 `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
                 `created_at` timestamp NULL DEFAULT NULL,
                 `updated_at` timestamp NULL DEFAULT NULL,
+                `verified` boolean default false,
                 PRIMARY KEY (`id`),
                 UNIQUE KEY `users_email_unique` (`email`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;';

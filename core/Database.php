@@ -19,8 +19,7 @@ final class Database
     private function __construct()
     {
         try {
-            $dotEnv = new DotEnv(ROOTH_PATH.'/.env');
-            $dotEnv->readFile();
+            
             $this->connection = new PDO($this->getDsn(), $_ENV['DB_USER'], $_ENV['DB_PASS'], [PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);
         }
         catch(\Exception $pEx) {

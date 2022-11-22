@@ -3,6 +3,7 @@
 namespace app\models;
 
 use core\Application;
+use core\exceptions\DatabaseException;
 use core\model\BaseModel;
 use core\Validation;
 
@@ -16,8 +17,10 @@ class User extends BaseModel
     }
     public function save(): bool
     {
-        if(parent::save())
-        {}
+        if(!parent::save())
+        {
+            throw new DatabaseException("Could not add records in the database");
+        }
         return true;
     }
     public function login():bool
@@ -26,7 +29,7 @@ class User extends BaseModel
         $password = $this->__get('password');
         $query = self::select('*')
                     ->from($this->tableName())
-                    ->where('email = :email');
+                    ->where('email = :email', 'verified = 1');
         $result = $this->dbExecute($query, ['email' => $email]);
 
         $user = $result->fetchObject(self::class);
@@ -41,4 +44,5 @@ class User extends BaseModel
         }
         return Application::$app->userLogin($user);
     }
+
 }

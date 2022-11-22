@@ -2,11 +2,9 @@
 
 namespace app\controllers;
 
-use app\models\User;
 use core\controllers\Controller;
 use core\Request;
 use core\Validation;
-use core\View;
 
 class HomeController extends Controller
 {

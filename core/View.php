@@ -27,7 +27,7 @@ class View
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
-    private function renderView(string $view, array $params=[]): string
+    public function renderView(string $view, array $params=[]): string
     {
         foreach($params as $key=>$value)
         {
